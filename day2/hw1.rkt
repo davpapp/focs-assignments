@@ -43,7 +43,12 @@
   	(* n (fact (- n 1)))))
 
 (display (fact 1)) (newline) ;; -> 1
+<<<<<<< HEAD
 (display (fact 10)) (newline) ;; -> 3628800
+=======
+(display (fact 2)) (newline) ;; -> 2
+(display (fact 3)) (newline) ;; -> 6
+>>>>>>> 57dba957e7d9e8a93ae37001b2768555208e796e
 
 ;; 4.  WRITE FIBONACCI:  given n, returns the nth fibonacci number as shown below
 ;;     Hint:  don't run this on really big numbers!

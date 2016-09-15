@@ -1,11 +1,41 @@
 #lang racket
 
-;;; Student Name: David Papp [change to your name]
+;;; Student Name: David Papp
 ;;;
 ;;; Check one:
 ;;; [x] I completed this assignment without assistance or external resources.
 ;;; [ ] I completed this assignment with assistance from ___
 ;;;     and/or using these external resources: ___
+
+
+;;;;;;;;;;;
+;; 1. assq
+
+;; `assq` is a function that takes a key and an association list.
+;;
+;; It returns the corresponding key/value pair from the list
+;; (*i.e.*, the pair whose key is *eq?* to the one it is given).
+;;
+;; If the key is not found in the list, `assq` returns `#f`.
+
+(define (assq key lst)
+	(if (empty? lst)
+		#f
+		(if (eq? key (first (first lst)))
+			(cons key (second (first lst)))
+			(assq key (rest lst)))))
+
+(assq 'c '((a aaa) (b bbb) (c ccc))) ;; --> '(c ccc)
+
+
+
+;;;;;;;;;;;
+;; 2. lookup-list
+
+;; Add the ability to look up symbols to your evaluator.
+;;
+;; Add the `lookup-list` argument to your hw2 evaluator (or ours, from the solution set).
+;; `(evaluate 'foo lookup-list)` should return whatever `'foo` is associated with in `lookup-list`.
 
 
 (define (calculate x)
@@ -43,33 +73,15 @@
 			[(equal? (first x) 'IPH)
 				(if (calculate (first (rest x)))
 					(calculate (first (rest (rest x))))
-					(calculate (first (rest (rest (rest x))))))])))
+					(calculate (first (rest (rest (rest x))))))]
+			[(equal? (first x) 'lookup-list)
+				(lookup (second x) (third x))])))
 
-;;; 1.  Create a calculator that takes one argument: a list that represents an expression.
+(define (lookup key lst)
+	(if (empty? lst)
+		#f
+		(if (eq? key (first (first lst)))
+			(second (first lst))
+			(assq key (rest lst)))))
 
-(calculate '(ADD 3 4)) ;; --> 7
-
-;;; 2. Expand the calculator's operation to allow for arguments that are themselves well-formed arithmetic expressions.
-
-(calculate '(ADD 3 (MUL 4 5))) ;; --> 23   ;; what is the equivalent construction using list?
-(calculate '(SUB (ADD 3 4) (MUL 5 6))) ;; --> -23
-
-;;; 3. Add comparators returning booleans (*e.g.*, greater than, less than, …).
-;; Note that each of these takes numeric arguments (or expressions that evaluate to produce numeric values),
-;; but returns a boolean.  We suggest operators `GT`, `LT`, `GE`, `LE`, `EQ`, `NEQ`.
-
-(calculate '(GT (ADD 3 4) (MUL 5 6))) ;; --> #f
-(calculate '(LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6))))) ;; --> #t
-
-;;; 4. Add boolean operations ANND, ORR, NOTT
-
-<<<<<<< HEAD
-(calculate '(ANND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #
-=======
-(calculate '(ANND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6)))))) ;; --> #f
-(calculate '(NOTT (ANND (GT (ADD 3 4) (MUL 5 6)) (LE (ADD 3 (MUL 4 5)) (SUB 0 (SUB (ADD 3 4) (MUL 5 6))))))) ;; --> #t
->>>>>>> 57dba957e7d9e8a93ae37001b2768555208e796e
-
-;;; 5. Add IPH
-
-(calculate '(IPH (GT (ADD 3 4) 7) (ADD 1 2) (ADD 1 3))) ;; -> 4
+(calculate '(lookup-list a ((a aaa) (b bbb) (c ccc))))
