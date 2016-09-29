@@ -8,9 +8,11 @@ If you add a separate file, please include the following at the top:
 Student Name: Frankly Olin [change to your name]
 Check one:
 [ ] I completed this assignment without assistance or external resources.
-[ ] I completed this assignment with assistance from ___
+[X] I completed this assignment with assistance from NINJA Allison
    and/or using these external resources: ___
 ```
+
+## I did everything on paper and put the .pdf file into the day8 folder on my repository.
 
 ## 1. For each of the following languages, decide whether it is regular
 
