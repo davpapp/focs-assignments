@@ -34,6 +34,16 @@ c) All strings (over {0,1}) consisting of a substring _w_ followed by the revers
 
 Play the **pumping game** (referenced on the [Day 8 page](https://sites.google.com/site/focs16fall/in-class-exercises/day-8) and also found at [http://weitz.de/pump/](http://weitz.de/pump/)).  Solve at least two puzzles from that page (that do NOT appear in question 1, above) and provide the word you chose, the substring the computer chose, and your successfully pumped string.
 
+
+word: a10b10
+substring: a3
+pumped string: a19b10
+
+word: a10b10a15
+substring: b
+pumped string: a10b20a15
+
+
 Notation notes:
 
 - The notation |w| sub a means the number of `a`'s in the word _w_.
