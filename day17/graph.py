@@ -4,7 +4,7 @@ from queue import Queue
 class Graph(object):
     """A minimal graph using adjacency lists."""
 
-    def __init__(self, nodes=[], edges=[]):
+    def __init__(self nodes=[], edges=[]):
         self.nodes = nodes
         self.adjacency_list = {n: [tail for (head, tail) in edges if head == n] for n in nodes}
 
@@ -25,6 +25,7 @@ class Graph(object):
 
 
 def bfs(graph, start):
+	for n in graph
     remaining_nodes = Queue()
     visited = set()
 
@@ -32,7 +33,9 @@ def bfs(graph, start):
         print(node)
         visited.add(node)
         for tail in graph.successors(node):
+        	tail.parent = node #adds parent to next node
             if tail not in visited:
+            	tail.distance = node.distance + 1
                 remaining_nodes.put(tail)
 
     remaining_nodes.put(start)

@@ -8,7 +8,7 @@ Date   : 2016-10-27
 License: MIT License
 """
 
-from queue import Queue
+from Queue import Queue
 
 
 class Graph(object):
@@ -41,6 +41,8 @@ class Node(object):
     that can accomodate additional attributes."""
 
     def __init__(self, label):
+        self.distance = 0
+        self.parent = None
         self.label = label
 
     def __repr__(self):
@@ -55,7 +57,9 @@ def bfs(graph, start):
         print(node)
         visited.add(node)
         for tail in graph.successors(node):
+            tail.parent = node
             if tail not in visited:
+                tail.distance = node.distance + 1
                 remaining_nodes.put(tail)
 
     remaining_nodes.put(start)
@@ -79,3 +83,15 @@ edge_labels = [('a', 'b'), ('a', 'c'), ('b', 'd'), ('b', 'e'), ('e', 'a')]
 
 g = Graph(*node_and_edge_labels_to_objects(node_labels, edge_labels))
 bfs(g, g.find_node('a'))
+
+"""
+Question 3:
+
+a 0
+b 10
+c 5
+d 13
+e 15
+f 17
+g 21
+"""
