@@ -1,0 +1,22 @@
+[x] Did this by myself
+[]
+
+"""
+1.
+a) Greedy. This approach always takes the best possible outcome at any given line, but not on a global
+scale. In this case, there might be a lot of whitespace at the end of each line, and long words
+can overflow the max_width.
+b) The word is added to lines without being split up. This goes past the max length.
+A new line is started afterwards.
+c) Not enough info. Optimal in terms of what?
+This algorithm is great in time + space complexity, but, for example, if we care about whitespaces at the end
+of each line, this algorithm is not ideal.
+
+
+
+
+2.
+a) Dynamic programming (top down). This approach stores all possible locations of line breaks and 
+chooses them such that the sum of their cubes is mininimum.
+
+"""
